@@ -2,8 +2,8 @@
 #include <iostream>
 using namespace std;
 
-#define INT_MAX = 2147483647;
-#define INT_MIN = -2147483648;
+#define INT_MAX  2147483647;
+#define INT_MIN  -2147483648;
 
 class Solution {
 public:
@@ -18,8 +18,9 @@ public:
                     isPositive = 1;
                 }
                 else if ( str[i] == '-') isPositive = 0;
+		else break;
             }
-	    else if ( (str[i] < '0' || str[i] > '9') && isPositive >= 0){
+	    else if ((str[i] < '0' || str[i] > '9') && isPositive >= 0){
                 break;
 	    }
             if ( str[i] >= '0' && str[i] <= '9' && isPositive >= 0){
@@ -37,10 +38,13 @@ public:
 
 int main(int argc, char * argv){
 	Solution solu;
-	char * test = "   -4147483648";
+	char * test = "   010";
 	int a = solu.atoi(test);
+	long aa = 100;
+	aa = aa * INT_MAX;
 	cout << a << "\n";
 	cout << sizeof(long)/sizeof(int);
+	cout << "\n" << aa; 
 	return 0;
 }
 
