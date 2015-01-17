@@ -1,3 +1,5 @@
+package romanToInteger;
+
 public class Solution{
 	public static int romanToInt(String s) {
 		if (s == null || s.length() == 0) return 0;
@@ -17,16 +19,17 @@ public class Solution{
 			}
 
 			if (previousNumber < number) {
-				sum = sum + number - previousNumber - previousNumber;
+				sum = sum + number - (2*previousNumber);
 			}
 			else sum += number;
 			previousNumber = number;
 		}
-		return number;
+		return sum;
 	}
 
 	public static void main(String args[]){
 		String str = "IV";
+		int i = romanToInt(str);
 		System.out.print(romanToInt(str));
 	}
 }
