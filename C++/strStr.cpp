@@ -6,24 +6,21 @@ class Solution{
 	public:
 		int strStr(char * haystack, char *needle) {
 			if (haystack == NULL || needle == NULL) return -1;
+			if (strlen(needle) == 0) return 0;
 			int i = 0;
 			int j = 0;
-			int start = -1;
 			for ( i = 0; i < haystack.length(); i++ ) {
 				if ( haystack[i] == needle[j]){
-					if (j == 0) {
-				        	start = i;
-					}
-					j++;
+					int iTemp == i;	
+					while (haystack[iTemp] == needle[j]){
+						iTemp ++;
+						j++;
+						if (j == strlen(needle)) return i;
+					}	
+					j = 0;
 				}
-				else{
-				       	j = 0;
-					start = -1;
-				}
-
-				if (j == needle.length()) return start;
 			}
-			return start;
+			return -1;
 		      	
 
 
