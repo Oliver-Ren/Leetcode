@@ -22,6 +22,14 @@ public class Solution {
     
     public void mergeLists(ListNode l1, ListNode l2, ListNode current){
         if ( (l1 == null && l2 == null) || current == null) return;
+        else if ( l1 == null && l2 != null){
+            current.next = l2;
+            return;
+        }
+        else if ( l1 != null && l2 == null){
+            current.next = l1;
+            return;
+        }
         else if ( l1 != null && l2 != null){
             if (l1.val < l2.val){
                 current.next = l1;
@@ -32,14 +40,7 @@ public class Solution {
                 l2 = l2.next;
             }
         }
-        else if ( l1 == null && l2 != null){
-            current.next = l2;
-            l2 = l2.next;
-        }
-        else if ( l1 != null && l2 == null){
-            current.next = l1;
-            l1 = l1.next;
-        }
+       
         mergeLists(l1,l2,current.next);
     }
 }
