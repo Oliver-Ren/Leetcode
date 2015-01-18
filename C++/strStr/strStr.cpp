@@ -4,6 +4,7 @@ using namespace std;
 
 class Solution{
 	public:
+		// This is the first passed solution, with brute-force
 		int strStr(char * haystack, char *needle) {
 			if (haystack == NULL || needle == NULL) return -1;
 			int lenHaystack = strlen(haystack);
@@ -13,7 +14,7 @@ class Solution{
 			int i = 0;
 			int j = 0;
 			for ( i = 0; i < lenHaystack; i++ ) {
-				if ( !strncmp(haystack + i; needle; lenNeedle) ) {
+				if ( !strncmp(haystack + i, needle, lenNeedle) ) {
 					return i;
 				}	
 			}
