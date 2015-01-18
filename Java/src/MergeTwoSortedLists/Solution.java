@@ -12,7 +12,7 @@ package MergeTwoSortedLists;
  */
 
 
-
+/*
 public class Solution {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode dummyHead =  new ListNode(0);
@@ -44,3 +44,4 @@ public class Solution {
         mergeLists(l1,l2,current.next);
     }
 }
+*/
