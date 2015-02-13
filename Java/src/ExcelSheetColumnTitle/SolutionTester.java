@@ -13,5 +13,6 @@ public class SolutionTester {
 		assertEquals("B",test.convertToTitle(2));
 		assertEquals("Z",test.convertToTitle(26));
 		assertEquals("AA",test.convertToTitle(27));
+		assertEquals("AA",test.convertToTitle(27));
 	}
 }
