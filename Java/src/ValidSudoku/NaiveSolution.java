@@ -26,7 +26,7 @@ public class NaiveSolution {
                 char [] tempLine = new char[9];
                 for (int k = 0; k < 3; k++) {
                     for (int l = 0; l < 3; l++) {
-                        tempLine[k+l] = board[i+k][j+l];
+                        tempLine[k*3 + l] = board[i+k][j+l];
                     }
                 }
                 if(!isValidLine(tempLine)) {
