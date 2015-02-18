@@ -10,9 +10,9 @@ using std::cout;
 class Mysolution {
 	public:
 		vector<vector<string> > NQueens(int N) {
-			this->column = new vector<int>(N, 0);
-			this->diag = new vector<int>(2*N, 0);
-			this->anti_diag = new vector<int>(2*N, 0);
+			this->column = vector<int>(N, 0);
+			this->diag = vector<int>(2*N, 0);
+			this->anti_diag = vector<int>(2*N, 0);
 			vector<int> C(N, 0);
 			vector<vector<string> > result;
 			dfs(C, result, 0);
@@ -41,7 +41,7 @@ class Mysolution {
 			}
 
 			for (int j = 0; j < N; ++j) {
-				const bool ok =  (j != column[row] && diag[row+j] == 0 && anti_diag[row-j+N] == 0);
+				const bool ok =  (column[j] == 0 && diag[row+j] == 0 && anti_diag[row-j+N] == 0);
 				if (! ok) {
 					continue;
 				}
@@ -53,4 +53,16 @@ class Mysolution {
 			}
 		}
 };
+int main() {
+	Solution aa;
+	vector<vector<string> > result = aa.solveNQueens(8);
+	cout << "hee" << endl;
+	for (int i = 0; i < result.size(); i++) {
+		for (int j = 0; j < result[0].size(); j++) {
+			cout << result[i][j] << endl;
+		}
+		cout << "===================" << endl;
+	}
+	return 0;
+}
 				
