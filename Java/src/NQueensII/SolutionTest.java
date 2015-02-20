@@ -9,7 +9,7 @@ public class SolutionTest {
 	@Test
 	public void test() {
 		Solution test = new Solution();
-		System.out.print(test.totalNQueens(4));
+		System.out.println(test.totalNQueens(4));
 	}
 
 }
