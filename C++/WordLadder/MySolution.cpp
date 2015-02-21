@@ -1,11 +1,14 @@
 #include <iostream>
 #include <vector>
+#include <string>
 
 using std::vector;
+using std::string;
+using std::unordered_set;
 
 class MySolution {
 public:
-	int ladderLength(const string& start, const string& end, const unordered_set<string> &dict) {
+	int ladderLength(const string & start, const string & end, const unordered_set<string> & dict) {
 		queue<string> current, next;
 		unordered_set<string> visited;
 
@@ -58,4 +61,6 @@ public:
 
 		if (found) return ++level;
 		else return 0;
+	}
+};
 
