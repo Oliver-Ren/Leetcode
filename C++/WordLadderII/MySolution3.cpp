@@ -5,9 +5,11 @@
 using std::vector;
 using std::string;
 
-class MySolution2 {
+/** This is the accepted solution for the word ladder problem. */
+
+class MySolution3 {
 public:
-	vector<vector<string> > findLaddeers(string start, string end, const unordered_set<string> &dict) {
+    vector<vector<string> > findLadders(string start, string end, const unordered_set<string> &dict) {
 		unordered_set<string> current, next;
 		unordered_set<string> visited;
 		unordered_map<string, vector<string> > father;
@@ -49,7 +51,7 @@ public:
 				}
 			}
 			current.clear();
-			swap(current, visited);
+			swap(current, next);
 		}
 		vector<string> path;
 		vector<vector<string> > result;
@@ -75,8 +77,6 @@ private:
 			path.pop_back();
 		}
 };
-
-
 
 
 			
