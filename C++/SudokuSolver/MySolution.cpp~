@@ -8,30 +8,25 @@ public:
 		dfs(board, 0);
 	}
 private:
-    bool found = false;
-    void dfs(vector<vector<char> > &board, int number) {
-  		if (number == 81) {
-			found = true;
-  		  	return;
-		}
-  		int row = number / 9;
-  		int column = number % 9;
-  		int grid = row - row % 3 + column / 3;		
+	  void dfs(vector<vector<char> > &board, int number) {
+		if (number == 81) return;
+		int row = number / 9;
+		int column = number % 9;
+		int grid = row - row % 3 + column / 3;		
 
-      if (board[row][column] == '.') {
-  		  for (char c = '1'; c <= '9'; c++) {
-  				board[row][column] = c;
-  				if (isValid(board, row, column)) {
-  					dfs(board, number + 1);
-					if (found) return;
-  				} else {
-  					board[row][column] = '.';
-  				}
-  			} 
-  		} else {
-  		  dfs(board, number + 1);
-  		  }
+		for (char c = '1'; c <= '9'; c++) {
+			if (board[row][column] == '.') {
+				board[row][column] = c;
+				if (isValid(board, row, column)) {
+					dfs(board, number + 1);
+				} else {
+					board[row][column] = '.';
+				}
+			} else {
+				dfs(board, number + 1);
+			}
 		}
+	  }
 
 	  bool isValid(vector<vector<char> > &board, int row, int column) {
 		  int originR = row - row % 3;
