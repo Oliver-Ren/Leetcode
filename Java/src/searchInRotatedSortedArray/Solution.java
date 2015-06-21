@@ -1,18 +1,40 @@
 public class Solution {
     public int search(int[] nums, int target) {
-		int first = 0;
-		int last = nums.length;
-		while (first != last) {
-			static final int mid = (first + last) / 2;
-			if (nums[mid] == target) {
-				return mid;
-			}
+        // Precondition
+		if (nums == null || nums.length == 0) {
+			return -1;
+		}
 
-			if (A[first] <= A[mid]) {
-				if (A[first] <= target && target < A[mid]) {
-					last = mid;
-				} else if (nums[last] >= target && target > nums[mid]) {
-					first = mid + 1;
+		int left = 0;
+		int right = nums.length - 1;
+
+		while (left <= right) {
+			int mid = (left + right) / 2;
+			
+			if (target == nums[mid]) {
+				return mid;
+			} else if (target > nums[mid]) {
+				if (target <= nums[right]) {
+					left = mid + 1;
+				} else {
+					right = mid - 1;
 				}
+			} else {
+				if (target >= nums[left]) {
+					right = mid;
+				} else {
+					left = mid + 1;
+				}
+			}
+		}
+
+		return -1;
+		
     }
+
+	public static void main(String [] args) {
+		Solution test = new Solution();
+		int [] nums = {1};
+		System.out.println(test.search(nums, 0));
+	}
 }
