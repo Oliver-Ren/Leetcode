@@ -13,14 +13,17 @@ public class Solution {
 			
 			if (target == nums[mid]) {
 				return mid;
-			} else if (target > nums[mid]) {
-				if (target <= nums[right]) {
+			} 
+			
+			if (nums[left] > nums[mid]) {
+				if (target > nums[mid] && target <= nums[right]) {
 					left = mid + 1;
 				} else {
-					right = mid - 1;
+					right = mid;
 				}
+			
 			} else {
-				if (target >= nums[left]) {
+				if (target < nums[mid] && target >= nums[left]) {
 					right = mid;
 				} else {
 					left = mid + 1;
