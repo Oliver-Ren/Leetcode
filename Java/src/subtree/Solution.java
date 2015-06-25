@@ -23,7 +23,7 @@ public class Solution {
 			return false;
 		}
 		
-		return isSameTree(T1, T2) || isSameTree(T1.left, T2) || isSameTree(T1.right, T2);
+		return isSameTree(T1, T2) || isSubtree(T1.left, T2) || isSubtree(T1.right, T2);
 	}
 
 	private boolean isSameTree(TreeNode T1, TreeNode T2) {
