@@ -14,7 +14,8 @@ public class Solution {
 		if (matrix == null || matrix.length < 1) {
 			return;
 		}
-		static final int N = matrix.length;
+		
+		final int N = matrix.length;
 
 		for (int i = 0; i < N; i++) {
 			for (int j = i + 1; j < N; j++) {
@@ -37,9 +38,8 @@ public class Solution {
 			return;
 		}
 		
-		static final int N = matrix.length;
+		final int N = matrix.length;
 
-		int level = 0;
 
 		for (int level = 0; level < N / 2; level++) {
 
