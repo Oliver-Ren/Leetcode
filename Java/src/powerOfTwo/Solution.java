@@ -1,0 +1,16 @@
+public class Solution {
+    public boolean isPowerOfTwo(int n) {
+        if (n < 0) return false;
+        int sum = 0;
+        for (int i = 0; i < 31; i++) {
+           sum += (n & 1);
+           n >>= 1;
+        }
+        return sum == 1;
+    }
+
+    public static void main(String [] args) {
+        Solution test = new Solution();
+        System.out.println(test.isPowerOfTwo(Integer.MIN_VALUE));
+    }
+}
