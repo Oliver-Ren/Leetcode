@@ -2,7 +2,7 @@ package palindromePartitioning;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Solution {
+public class Solution2 {
     public List<List<String>> partition(String s) {
         if (s == null || s.length() == 0) return null;
         List<List<String>> result = new ArrayList<List<String>>();
@@ -18,9 +18,6 @@ public class Solution {
         if (end - start > 0) {
             cand.add(new String(str, start, end - start));
         }
-        if (!isPalindrom(str, start, end)) {
-            return;
-        }
 
         if (end == str.length) {
             result.add(new ArrayList<String>(cand));
@@ -28,16 +25,15 @@ public class Solution {
         }
 
         int newStart = end;
-        int newEnd = newStart + 1;
 
-        while (newEnd <= str.length) {
+        for (int newEnd = newStart + 1; newEnd <= str.length; newEnd++) {
+            if (!isPalindrom(str, newStart, newEnd)) {
+                continue;
+            }
             dfs(str, result, cand, newStart, newEnd);
             cand.remove(cand.size() - 1);
-            newEnd++;
+           
         }
-
-
-        
 
     }  
 

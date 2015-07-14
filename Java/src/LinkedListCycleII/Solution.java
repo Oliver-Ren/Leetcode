@@ -30,6 +30,6 @@ public class Solution {
             fastPointer = fastPointer.next;
         }
         return fastPointer;
-        
+       
     }
 }
