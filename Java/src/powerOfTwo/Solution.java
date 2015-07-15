@@ -9,6 +9,10 @@ public class Solution {
         return sum == 1;
     }
 
+    public boolean isPowerOfTwo2(int n) {
+        return (n & (n -1) == 0 && n > 0);
+    }
+
     public static void main(String [] args) {
         Solution test = new Solution();
         System.out.println(test.isPowerOfTwo(Integer.MIN_VALUE));
