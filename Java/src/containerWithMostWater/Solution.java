@@ -1,33 +1,17 @@
 public class Solution {
     public int maxArea(int[] height) {
-        int minIndex = -1;
-        int minValue = Integer.MAX_VALUE;
+        int i = 0;
+        int j = height.length - 1;
         int maxArea = 0;
-        int leftPtr = 0;
-        int rightPtr = 0;
-
-        while (leftPtr < height.length) {
-           for (rightPtr = leftPtr; rightPtr < height.length; rightPtr++) {
-               /* set the first min index in this loop. */
-               if (height[rightPtr] < minValue && minIndex < leftPtr) {
-                   minIndex = rightPtr;
-                   minValue = height[rightPtr];
-               }
-
-               maxArea = Math.max(maxArea, minValue * (rightPtr - leftPtr));
-           }
-           
-           leftPtr = minIndex + 1;
+        while (i < j) { 
+            if (height[i] < height[j]) {
+                maxArea = Math.max(height[i] * (j - i), maxArea);
+                i++;
+            } else {
+                maxArea = Math.max(height[j] * (j - i), maxArea);
+                j--;
+            }
         }
-
         return maxArea;
-
-        
-    }
-
-    public static void main(String [] args) {
-        Solution test = new Solution();
-        int[] height = {1,1};
-        System.out.println(test.maxArea(height));
     }
 }
