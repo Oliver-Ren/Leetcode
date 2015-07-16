@@ -9,7 +9,7 @@
  */
 public class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
-                Stack<TreeNode> nodeStack = new Stack();
+        Stack<TreeNode> nodeStack = new Stack();
         List<Integer> result = new LinkedList<Integer>();
 
         
@@ -20,6 +20,10 @@ public class Solution {
 
             if (curr.left == null) {
                 result.add(curr.val);
+                    
+                if (curr.right != null) {
+                    nodeStack.push(curr.right);
+                }
                
             } else {
                 TreeNode left = curr.left;
@@ -29,9 +33,6 @@ public class Solution {
                 continue;
             }
 
-            if (curr.right != null) {
-                nodeStack.push(curr.right);
-            }
             
              curr = nodeStack.empty() ? null : nodeStack.pop();
         }
