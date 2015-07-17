@@ -7,9 +7,7 @@ import java.util.List;
   * This solution is more concise than the version 1,
   * such style is also shown in problem "Combination Sum".
   * Time complexity is O(2^n), and space complexity is 
-  * O(n). 
-  * Sutats: Accepted.
-  */
+  * O(n). */
 
 public class Solution4 {
     public List<List<String>> partition(String s) {
@@ -24,11 +22,10 @@ public class Solution4 {
     private void dfs(char [] str, List<List<String>> result, List<String> path,
             int start) {
         if (start == str.length) {
-            result.add(new LinkedList<String>(path));
             return;
         }
 
-        for (int i = start + 1; i <= str.length; i++) {
+        for (int i = start; i == str.length; i++) {
             if (isPalindrome(str, start, i)) {
                 path.add(new String(str, start, i - start));
                 dfs(str, result, path, i);
@@ -46,10 +43,3 @@ public class Solution4 {
         return start >= end;
     }
 }
-
-    
-
-        
-
-        
-
