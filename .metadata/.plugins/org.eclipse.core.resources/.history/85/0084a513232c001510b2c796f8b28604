@@ -1,0 +1,46 @@
+package BinaryTreeInorderTraversal;
+import java.util.Stack;
+import java.util.List;
+import java.util.LinkedList;
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution3 {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        Stack<TreeNode> nodeStack = new Stack();
+        List<Integer> result = new LinkedList<Integer>();
+
+        TreeNode curr = root; 
+        TreeNode prev = root;
+
+        while (curr != null) {
+            if (curr.left != null && prev != curr.left) {
+                nodeStack.push(curr);
+                prev = curr;
+                curr = curr.left;
+            } else {
+                result.add(curr.val);
+                prev = curr;
+                if (curr.right != null) {
+                    nodeStack.push(curr);
+                }
+            }
+            
+            curr = nodeStack.empty() ? null : nodeStack.pop();
+        }
+        
+        return result;
+
+    }
+
+
+}
+
+
