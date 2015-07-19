@@ -8,7 +8,7 @@
   * the current element in order and then 
   * times the current stored value.
   * Time complexity: O(n), Space complexity: O(1)
-  * Sutats: Accepted, 444ms.
+  * Sutats: Accepted, 444ms. 
   */
 
 public class Solution {
