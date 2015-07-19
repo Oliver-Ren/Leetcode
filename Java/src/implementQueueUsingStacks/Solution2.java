@@ -1,40 +1,38 @@
-/** Soluion
-  * using two stacks
-  * Status: Accpeted.
+/** Soluion 2, 
+  * using two stacks and reorganize
+  * when peek()
+  * Status: accepted, 200ms.
   */
 
 class MyQueue {
-    private Stack<Integer> primStack = new Stack<Integer>();
-    private Stack<Integer> backupStack = new Stack<Integer>();
+    private Stack<Integer> input = new Stack<Integer>();
+    private Stack<Integer> output = new Stack<Integer>();
 
     // Push element x to the back of queue.
     public void push(int x) {
-        while (!primStack.empty()) {
-            backupStack.push(primStack.pop());
-        }
-
-        primStack.push(x);
-
-        while (!backupStack.empty()) {
-            primStack.push(backupStack.pop());
-        }
+        input.push(x);
     }
 
     // Removes the element from in front of queue.
     public void pop() {
-        primStack.pop();
-        
+        peek();
+        output.pop();
     }
 
     // Get the front element.
     public int peek() {
-        return primStack.peek();
+        if (output.empty()) {
+            while (!input.empty()) {
+                output.push(input.pop());
+            }
+        }
+        return output.peek();
         
     }
 
     // Return whether the queue is empty.
     public boolean empty() {
-        return primStack.empty();
+        return output.empty() && input.empty();
         
     }
 }
