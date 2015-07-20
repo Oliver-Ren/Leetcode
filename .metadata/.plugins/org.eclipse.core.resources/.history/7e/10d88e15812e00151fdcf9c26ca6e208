@@ -1,10 +1,10 @@
-//package pascalsTriangle;
+package pascalsTriangle;
 import java.util.List;
 import java.util.ArrayList;
 
 /** 
-  * the time complexity is O(n^2), 
-  * the space complexity is O(1).
+  * the time complexity is 
+  * the space complexity is 
   * Status: Not finished.
   */
 
@@ -17,7 +17,7 @@ public class Solution {
                 if (j == 0 || j == i -1) {
                     level.add(1);
                 } else {
-                    level.add(result.get(i - 2).get(j - 1) + result.get(i - 2).get(j));
+                    //level.add(result.get(i - 1).get(j - 1) + result.get(i - 1).get(j + 1));
                 }
             }
             result.add(level);
@@ -29,11 +29,10 @@ public class Solution {
 
     public static void main(String [] args) {
         Solution test = new Solution();
-        List<List<Integer>> result = test.generate(5);
+        List<List<Integer>> result = test.generate(1);
         for (List<Integer> level : result) {
             for (int i : level) {
-                System.out.print(i);
-                System.out.print(" ");
+                System.out.print(i + ',');
             }
             System.out.println();
         }
