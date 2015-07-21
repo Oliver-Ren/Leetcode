@@ -1,7 +1,6 @@
 INDEX VERSION 1.127+/home/chengxiang/Coding/Leetcode/.metadata/.plugins/org.eclipse.jdt.core
 664741535.index
 3542660237.index
-2078267704.index
 3900037835.index
 2426646370.index
 3938652823.index
