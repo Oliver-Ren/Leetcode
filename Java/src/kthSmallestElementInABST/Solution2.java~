@@ -18,27 +18,24 @@
 public class Solution {
     public int kthSmallest(TreeNode root, int k) {
         int [] result = new int[2];
-        dfs(root, k, result);
+        dfs(root, k, 0, result);
         return result[1];
     }
 
-    private void dfs(TreeNode root, int k, int [] result) {
+    private void dfs(root, int k, int [] result) {
         if (root == null) {
             return;
         }
 
-        dfs(root.left, k, result);
+        result = dfs(root.left, k, result);
         result[0]++;
         if (result[0] != k) {
-            dfs(root.right, k, result);
+            result = dfs(root.right, k, result);
         } else {
-            result[1] = root.val;
+            resutl[1] = root.val;
         }
         
     }
 }
-
-
-
 
 
