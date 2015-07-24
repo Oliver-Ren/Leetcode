@@ -3,7 +3,7 @@
   * It only loop one round.
   * Time complexity is O(n).
   * Spcace complexity is O(n).
-  * Status: Not finished.
+  * Status: Accepted, 376ms. 
   */
 
 public class Solution {
