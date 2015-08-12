@@ -1,8 +1,8 @@
 /** This solution is the basic 
   * quick select..
   * the Time complexity is: O(n);
-  * space complexity is: O(logn);
-  * Status: 
+  * space complexity is: O(1);
+  * Status: Accepted, 296ms. 
   */
 
 public class Solution_QSelect {
@@ -10,7 +10,7 @@ public class Solution_QSelect {
         int lo = 0;
         int hi = nums.length - 1;
         int mid = 0;
-        while (true) {
+        while (lo < hi) {
             mid = partition(nums, lo, hi);
             if (mid == nums.length - k) {
                 break;
@@ -21,18 +21,18 @@ public class Solution_QSelect {
             }
         }
 
-        return num[mid];
+        return nums[nums.length - k];
     }
 
-    private int partition(int nums, int lo, int hi) {
+    private int partition(int[] nums, int lo, int hi) {
         int i = lo;
         int j = hi + 1;
         
         while (true) {
-            while (i < hi && nums[i++] < nums[lo]);
-            while (j > 0 && nums[--j] > nums[lo]);
+            while (i < hi && nums[++i] < nums[lo]);
+            while (j > lo && nums[--j] > nums[lo]);
 
-            if (i > j) {
+            if (i >= j) {
                 break;
             } else {
                 exch(nums, i, j);
@@ -40,7 +40,7 @@ public class Solution_QSelect {
         }
 
         exch(nums, lo, j);
-        reutrn j;
+        return j;
     }
 
     private void exch(int[] nums, int i, int j) {
@@ -48,6 +48,8 @@ public class Solution_QSelect {
         nums[i] = nums[j];
         nums[j] = temp;
     }
+
+
 }
 
         
