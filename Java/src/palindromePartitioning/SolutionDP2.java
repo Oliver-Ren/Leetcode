@@ -1,4 +1,3 @@
-package palindromePartitioning;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +9,7 @@ import java.util.List;
   * Status: Not Finished.
   */
 
-public class SolutionDP {
+public class SolutionDP2 {
     public List<List<String>> partition(String s) {
         int len = s.length();
         List<List<String>>[] result = new List[len + 1];
@@ -24,6 +23,7 @@ public class SolutionDP {
             for (int j = 0; j <= i; j++) {
                 pair[i][j] = (s.charAt(j) == c && ((i - j < 2) || pair[i - 1][j + 1]));
                 if (pair[i][j]) {
+                    System.out.println("palindrome i: " + i + " J: " +j);
                     String str = s.substring(j, i + 1);
                     for (List<String> r : result[j]) {
                         List<String> ri = new ArrayList<String>(r);
@@ -36,6 +36,19 @@ public class SolutionDP {
 
         return  result[len];
     }
+
+    public static void main(String[] args) {
+        SolutionDP2 test = new SolutionDP2();
+        List<List<String>> result = test.partition("aab");
+        for (List<String> l : result) {
+            for (String s : l) {
+                System.out.print(s + ", ");
+            }
+            System.out.println();
+        }
+    }
+
+
 }
 
 
