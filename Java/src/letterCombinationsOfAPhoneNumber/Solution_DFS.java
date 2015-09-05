@@ -4,8 +4,8 @@ import java.util.*;
  * the table is stored using an array
  * of Strings.
  * 
- * Time complexity:
- * Space compleity:
+ * Time complexity: O(3 ^ n)
+ * Space compleity: O(n)
  * Status: accepted, 244ms;
  */
 

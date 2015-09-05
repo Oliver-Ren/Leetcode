@@ -5,7 +5,7 @@ import java.util.*;
  * of Strings.
  * 
  * Time complexity: O(3 ^ n)
- * Space compleity: O(3 ^ n)
+ * Space compleity: O(n)
  * Status: accepted, 256ms;
  */
 
