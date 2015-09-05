@@ -1,0 +1,39 @@
+/**
+ * My first attempt for LRU cache.
+ * the intuition is using an min heap
+ * to back-up the cache for the keys.
+ * Then use the HashMap to map from
+ * key to value.
+ * Space complexity: O(n).
+ * Time complexity on insert: O(logn).
+ * Time complexity on find: O(logn).
+ */
+
+public class LRUCache {
+    private PriorityQueue<Integer> pQueue;
+    private capacity;
+
+    private class Wrapper extends Comparable {
+        // the rank of usage frequency.
+        private int freqRank;
+
+        private int key;
+
+        private int value;
+
+        private Wrapper(int key, int value)
+    
+    public LRUCache(int capacity) {
+        pQueue = new PriorityQueue<Integer>();
+        this.capacity = capacity;
+    }
+    
+    public int get(int key) {
+        
+        
+    }
+    
+    public void set(int key, int value) {
+        
+    }
+}
