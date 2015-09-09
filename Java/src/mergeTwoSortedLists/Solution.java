@@ -9,7 +9,7 @@
 
 /*
  * The iterative solution.
- * Time complexity: O(n)
+ * Time complexity: O(min(m,n))
  * space complexity: O(1)
  * status: Accepted, 316ms.
  */
