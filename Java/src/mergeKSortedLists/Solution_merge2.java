@@ -16,7 +16,7 @@
  * Time complexity: O(nlogk) where n is 
  * the length of the longest list.
  * Space complexity: O(k);
- * Status: DNF.
+ * Status: Accepted. 340ms.
  */
 
 public class Solution_merge2 {
@@ -51,38 +51,29 @@ public class Solution_merge2 {
 
     // The helper method for merging two sorted lists.
     private ListNode mergeTwoLists(ListNode n1, ListNode n2) {
+        ListNode dummy = new ListNode(-1);
+        ListNode visitor = dummy;
+
+        while (n1 != null && n2 != null) {
+            if (n1.val < n2.val) {
+                visitor.next = n1;
+                n1 = n1.next;
+            } else {
+                visitor.next = n2;
+                n2 = n2.next;
+            }
+
+            // go one step further
+            visitor = visitor.next;
+        }
+
         if (n1 == null) {
-            return n2;
-        } else if (n2 == null) {
-            return n1;
-        }
-
-        ListNode head = n1.val > n2.val ? n2 : n1;
-        mergeTwoListsHelper(n1, n2);
-
-        return head; 
-    }
-
-    // the helper method for recursively merging the lists.
-    private void mergeTwoListsHelper(ListNode n1, ListNode n2) {
-        if (n1 == null || n2 == null) {
-            return;
-        }
-
-        if (n1.val > n2.val) {
-            ListNode n2Next = n2.next; 
-            n2.next = n1;
-            mergeTwoListsHelper(n1, n2Next);
+            visitor.next = n2;
         } else {
-            ListNode n1Next = n1.next;
-            n1.next = n2;
-            mergeTwoListsHelper(n1Next, n2);
+            visitor.next = n1;
         }
+
+        return dummy.next;
     }
 }
-
-            
-
-
-
 
