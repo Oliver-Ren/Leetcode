@@ -8,12 +8,12 @@
  */
 
 /* The third method:
- * using divide and conquer.
+ * using divide and conquer (recursive).
  * The merge is implemented in-place.
  * Time complexity: O(nklogk) where n is 
  * the length of the longest list.
  * Space complexity: O(1);
- * Status: Accepted. 340ms.
+ * Status: Accepted, 360ms. 
  */
 
 public class Solution_DC {
@@ -24,26 +24,26 @@ public class Solution_DC {
             return null;
         }
 
-        int len = lists.length;
+        return divide(lists, 0, lists.length);
 
-        // control rounds
-        while (len > 1) {
-            int groupPos = 0; // position of current group, a group is two neighbor lists. 
-            while (groupPos < len) { 
-                if (groupPos == len - 1) {
-                    lists[groupPos >> 1] = lists[groupPos];
-                } else {
-                    lists[groupPos >> 1] 
-                        = mergeTwoLists(lists[groupPos], lists[groupPos + 1]);
-                }
-                
-                groupPos += 2;
-            }
+    }
 
-            len = groupPos >> 1;
+    // Helper method for divide and conquer
+    // start is inclusive and end is exclusive.
+    private ListNode divide(ListNode[] lists, int start, int end) {
+        if (end - start == 1) {
+            return lists[start];
+        }
+        if (end - start == 2) {
+            return mergeTwoLists(lists[start], lists[end - 1]);
         }
 
-        return lists[0];
+        int mid = start + (end - start) / 2;
+
+        ListNode left = divide(lists, start, mid);
+        ListNode right = divide(lists, mid, end);
+        
+        return mergeTwoLists(left, right);
     }
 
     // The helper method for merging two sorted lists.
