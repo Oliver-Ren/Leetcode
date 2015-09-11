@@ -2,31 +2,34 @@
  * The greedy solution
  * uses the property that the opt
  * is non-descending array.
- * time complexity: O(n^2);
- * space complexity: O(n);
- * Status: accepted, 624ms.
+ * time complexity: O(n);
+ * space complexity: O(1);
+ * Status: accepted, 408ms.
  */
 public class Solution {
     public int jump(int[] nums) {
         // dealing with invalid inputs
-        if (nums == null) {
+        if (nums == null || nums.length == 0) {
             return -1;
         }
 
         int right = 0;
+        int left = 0;
         int jumpNum = 0;
-        for (int i = 0; i < nums.length; i++) {
-            if (i + nums[i] > right) {
-                jumpNum++;
-                right = i + nums[i];
+
+        while (right < nums.length - 1) {
+            jumpNum++;
+            int end = right;
+
+            for (int i = left; i <= right; i++) {
+                end = nums[i] + i > end ? nums[i] + i : end;
             }
 
-            if (right >= nums.length - 1) {
-                return jumpNum;
-            }
+            left = right + 1;
+            right = end;
         }
-
-        return -1;
+        
+        return jumpNum;
     }
 }
 
