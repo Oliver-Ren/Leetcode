@@ -20,6 +20,36 @@ public class Solution {
         if (root == null) {
             return false;
         }
+
         Stack<TreeNode> nodeStack = new Stack<TreeNode>();
-        int sum = 0;
+        Stack<Integer> sumStack = new Stack<Integer>();
+
+        nodeStack.push(root);
+        sumStack.push(root.val);
+
+        while (!nodeStack.isEmpty()) {
+            TreeNode curr = nodeStack.pop();
+            int currSum = sumStack.pop();
+
+            if (curr.left == null && curr.right == null
+                    && currSum == sum) {
+                return true;
+            }
+
+            if (curr.right != null) {
+                nodeStack.push(curr.right);
+                sumStack.push(currSum + curr.right.val);
+            }
+
+            if (curr.left != null) {
+                nodeStack.push(curr.left);
+                sumStack.push(currSum + curr.left.val);
+            }
+
+        }
+
+        return false;
+    }
+}
+
 
