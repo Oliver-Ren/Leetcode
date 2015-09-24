@@ -14,22 +14,6 @@
  */
 
 public class Solution {
-    // we defined an interface!!!!!!! 
-    private Comparator<ListNode> nodeComparator = new Comparator<ListNode>() {
-        @Override
-        public int compare(ListNode n1, ListNode n2) {
-            if (n1 == null) {
-                return -1;
-            }
-
-            if (n2 == null) {
-                return -1;
-            }
-
-            return n1.val - n2.val;
-        }
-    };
-
 
     public ListNode mergeKLists(ListNode[] lists) {
         if (lists == null || lists.length == 0) {
@@ -40,7 +24,20 @@ public class Solution {
         ListNode curr = dummy;
 
         PriorityQueue<ListNode> minPQ 
-            = new PriorityQueue<ListNode>(lists.length, nodeComparator); // care!!! how to use interface!!!!! 
+            = new PriorityQueue<ListNode>(lists.length, new Comparator<ListNode>() {
+                @Override
+                public int compare(ListNode n1, ListNode n2) {
+                    if (n1 == null) {
+                        return -1;
+                    }
+
+                    if (n2 == null) {
+                        return -1;
+                    }
+
+                    return n1.val - n2.val;
+                }
+            }); // care!!! how to use interface!!!!! 
         for (int i = 0; i < lists.length; i++) {
             if (lists[i] != null) {
                 minPQ.offer(lists[i]);

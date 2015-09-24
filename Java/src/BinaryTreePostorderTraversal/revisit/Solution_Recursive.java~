@@ -1,0 +1,31 @@
+package BinaryTreePostorderTraversal;
+
+import java.util.List;
+import java.util.ArrayList;
+
+/**
+ * This is the Recursive version of the Binary Tree PostorderTraversal
+ * @author cr486
+ *
+ */
+public class Solution_Recursive {
+	
+    public List<Integer> postorderTraversal(TreeNode root) {
+        List<Integer> result = new LinkedList<Integer> ();
+        traverse(result, root);
+        return result;
+    }
+    
+    private void traverse(List<Integer> result, TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        
+        traverse(result, root.left);
+        traverse(result, root.right);
+        result.add(root.val);
+    }
+}
+}
+
+
