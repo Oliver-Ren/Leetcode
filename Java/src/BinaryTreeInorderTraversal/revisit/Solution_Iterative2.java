@@ -16,23 +16,5 @@ public class Solution_Iterative2 {
         Stack<TreeNode> nodeStack = new Stack<TreeNode>();
 
         TreeNode curr = root;
-
-        while (curr != null) {
-            if (curr.right != null) {
-                nodeStack.push(curr.right);
-            }
-
-            if (curr.left != null) {
-                nodeStack.push(curr);
-                nodeStack.push(curr.left);
-                curr.left = null;
-            } else {
-                result.add(curr.val);
-            }
-            
-            curr = nodeStack.isEmpty() ? null : nodeStack.pop();
-        }
-
-        return result;
-    }
-}
+       
+        
