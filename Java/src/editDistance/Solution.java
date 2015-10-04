@@ -18,12 +18,12 @@ public class Solution {
         int[][] opt = new int[len1 + 1][len2 + 1];
         
         // init the first column.
-        for (int i = 0; i < len1; i++) {
+        for (int i = 0; i <= len1; i++) {
             opt[i][0] = i;
         }
 
         // init the first row.
-        for (int j = 0; j < len2; j++) {
+        for (int j = 0; j <= len2; j++) {
             opt[0][j] = j;
         }
 

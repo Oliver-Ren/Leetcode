@@ -2,7 +2,7 @@
  * This is my first attempt for Leetcode problem <tt>Edit Distance</tt>.
  * The solution is based on the dynamic proramming approach.
  * Time complexity: O(m*n);
- * Space complexity: O(min(m, n));
+ * Space complexity: O(n);
  * Status: time limit exceeded.
  */
 public class Solution2 {
@@ -35,9 +35,7 @@ public class Solution2 {
                 prev = opt[j];
                 opt[j] = Math.min(Math.min(costInsert, costDelete), 
                         costReplace);
-                System.out.print(opt[j] + ", ");
             }
-            System.out.println();
         }
 
         return opt[len2];
