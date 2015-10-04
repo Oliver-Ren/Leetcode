@@ -2,10 +2,10 @@
  * This is my first attempt for Leetcode problem <tt>Edit Distance</tt>.
  * The solution is based on the dynamic proramming approach.
  * Time complexity: O(m*n);
- * Space complexity: O(m*n);
+ * Space complexity: O(min(m, n));
  * Status: time limit exceeded.
  */
-public class Solution {
+public class Solution2 {
     public int minDistance(String word1, String word2) {
         if (word1 == null || word2 == null) {
             throw new NullPointerException();
@@ -15,33 +15,36 @@ public class Solution {
         int len2 = word2.length();
 
         // The array for storing the optimal subproblem.
-        int[][] opt = new int[len1 + 1][len2 + 1];
-        
-        // init the first column.
-        for (int i = 0; i < len1; i++) {
-            opt[i][0] = i;
-        }
+        int[] opt = new int[len2 + 1];
 
         // init the first row.
-        for (int j = 0; j < len2; j++) {
-            opt[0][j] = j;
+        for (int j = 0; j <= len2; j++) {
+            opt[j] = j;
         }
 
         for (int i = 1; i <= len1; i++) {
+            int prev = opt[0];
+            opt[0] = i;
             for (int j = 1; j <= len2; j++) {
-                if (word1.charAt(i - 1) == word2.charAt(j - 1)) {
-                    opt[i][j] = opt[i - 1][j - 1];
-                } else {
-                    opt[i][j] = Math.min(Math.min(opt[i][j - 1], 
-                                opt[i - 1][j]), opt[i - 1][j - 1]) + 1;
+                int costInsert = opt[j - 1] + 1;
+                int costDelete = opt[j] + 1;
+                int costReplace = prev;
+                if (word1.charAt(i - 1) != word2.charAt(j - 1)) {
+                    costReplace++;
                 }
+                prev = opt[j];
+                opt[j] = Math.min(Math.min(costInsert, costDelete), 
+                        costReplace);
+                System.out.print(opt[j] + ", ");
             }
+            System.out.println();
         }
-        return opt[len1][len2];
+
+        return opt[len2];
     }
 
     public static void main(String[] args) {
-        Solution test = new Solution();
+        Solution2 test = new Solution2();
         System.out.println(test.minDistance("hhh", "aaa"));
     }
 }
