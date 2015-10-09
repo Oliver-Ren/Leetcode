@@ -5,7 +5,7 @@ import java.util.HashMap;
  * The idea is using greedy approach.
  * Time complexity: O(n);
  * Space complexity: O(n);
- * Status: time limit exceeded.
+ * Status: Accepted.
  */
 public class Solution {
     public int lengthOfLongestSubstring(String s) {
@@ -29,7 +29,10 @@ public class Solution {
                 posMap.put(curr, end);
             } else {
                 // bad, duplicate
-                start = posMap.get(curr);
+
+                // Be very very very careful about this.
+                // the pointer could go back if no max.
+                start = Math.max(start, posMap.get(curr));
                 posMap.put(curr, end);
             }
             // update
