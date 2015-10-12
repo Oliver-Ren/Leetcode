@@ -1,9 +1,9 @@
 import java.util.*;
 /**
  * The simple DFS solution.
- * Time complexity: 
- * Space complexity:
- * status:
+ * Time complexity: O(n!)
+ * Space complexity: O(n)
+ * status: accepted.
  */ 
 public class Solution {
     public List<List<Integer>> permute(int[] nums) {
