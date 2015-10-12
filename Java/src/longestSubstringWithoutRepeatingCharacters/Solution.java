@@ -1,7 +1,9 @@
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Arrays;
 /**
- * My first attempt for the problem.
+ * Solution using arrays of size 256 instead of
+ * HashMap to for the better performance of ACSII code.
  * The idea is using greedy approach.
  * Time complexity: O(n);
  * Space complexity: O(n);
@@ -14,35 +16,21 @@ public class Solution {
             return 0;
         }
 
+        int[] posMap = new int[256];
+        Arrays.fill(posMap, -1);
         int start = 0;
-        int end = 1;    // exclusive end position
-        // keep track of the position of the longest
-        // substring.
-        int maxStart = 0;
-        int maxEnd = 0;
-        Map<Character, Integer> posMap = new HashMap<Character, Integer>();
-
+        int end = 1;    // exclusive;
+        int maxLen = 0;
+        
         for (; end <= s.length(); end++) {
             char curr = s.charAt(end - 1);
-            if (!posMap.containsKey(curr)) {
-                // ok to go
-                posMap.put(curr, end);
-            } else {
-                // bad, duplicate
-
-                // Be very very very careful about this.
-                // the pointer could go back if no max.
-                start = Math.max(start, posMap.get(curr));
-                posMap.put(curr, end);
+            if (posMap[curr] >= 0) {
+                start = Math.max(posMap[curr] + 1, start);
             }
-            // update
-            if (end - start > maxEnd - maxStart) {
-                maxStart = start;
-                maxEnd = end;
-            }
+            posMap[curr] = end - 1;
+            maxLen = Math.max(maxLen, end - start);
         }
 
-        return (maxEnd - maxStart);
-
+        return maxLen;
     }
 }
