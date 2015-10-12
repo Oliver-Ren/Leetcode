@@ -7,7 +7,7 @@ import java.util.HashMap;
  * Space complexity: O(n);
  * Status: Accepted.
  */
-public class Solution {
+public class Solution2 {
     public int lengthOfLongestSubstring(String s) {
         // precondition: s is not null
         if (s == null) {
@@ -40,9 +40,16 @@ public class Solution {
                 maxStart = start;
                 maxEnd = end;
             }
+            System.out.println("ptr1 = " + (start) + ", ptr2 = " + (end - 1) + ", max = " + (maxEnd - maxStart));
         }
 
+        //System.out.println("" + maxStart + ", " + maxEnd);
         return (maxEnd - maxStart);
 
+    }
+
+    public static void main(String[] args) {
+        Solution2 test = new Solution2();
+        test.lengthOfLongestSubstring("gehmbfqmozbpripibusbezagafqtypz");
     }
 }
