@@ -30,7 +30,7 @@ public class Solution {
             }
         }
         
-        for (int i = 1; i < str.length - 1; i++) {
+        for (int i = 0; i < str.length - 1; i++) {
             int j = i;
             int k = i + 1;
             while (j >= 0 && k < str.length && str[j] == str[k]) {
