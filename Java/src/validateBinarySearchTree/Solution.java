@@ -62,8 +62,4 @@ public class Solution {
         return new Status(leftCond && rightCond, max, min);
     }
 
-
-
-
-        
 }
