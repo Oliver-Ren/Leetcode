@@ -25,10 +25,11 @@ public class Solution {
                 candies[i] = 1;
             } else {
                 candies[i] = 1;
-                while (i > 0 && ratings[i - 1] > ratings[i]
-                        && candies[i - 1] == candies[i]) {
-                    candies[i - 1]++;
-                    i--;
+                int j = i;
+                while (j > 0 && ratings[j - 1] > ratings[j]
+                        && candies[j - 1] == candies[j]) {
+                    candies[j - 1]++;
+                    j--;
                 }
             }
         }
