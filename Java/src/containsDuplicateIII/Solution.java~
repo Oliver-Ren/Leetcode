@@ -1,9 +1,5 @@
 /**
  * My first attempt.
- * using the Tree Data structure.
- * Time Compleixty: O(nlogk);
- * Space Complexity: O(k);
- * Status: Accepted.
  */
 public class Solution {
     public boolean containsNearbyAlmostDuplicate(int[] nums, int k, int t) {
@@ -15,10 +11,10 @@ public class Solution {
         TreeMap<Long, Integer> slideWindow = new TreeMap();
         for (int i = 0; i < nums.length; i++) {
             if (i > k) {
-                slideWindow.remove(Long.valueOf(nums[i - k - 1]));
+                slideWindow.remove(nums[i - k - 1]);
             }
 
-            Long curr = Long.valueOf(nums[i]);
+            Long curr = nums[i];
             Long ceil = slideWindow.ceilingKey(curr);
             if (ceil != null && ceil <= curr + t) return true;
             Long floor = slideWindow.lowerKey(curr);
@@ -31,3 +27,6 @@ public class Solution {
     }
 }
                 
+
+    }
+}
