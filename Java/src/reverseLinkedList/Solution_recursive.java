@@ -6,24 +6,20 @@
  *     ListNode(int x) { val = x; }
  * }
  */
+
+// Status; Accepted.
 public class Solution {
     public ListNode reverseList(ListNode head) {
-		/* reached the end of the linked list. */
-		if (head.next == null) {
-			return head;
-		}
+        return reverseList(head, null);
+    }
 
-		ListNode reversedHead = reverseList(head.next);
+    private ListNode reverseList(ListNode curr, ListNode prev) {
+        // base case
+        if (curr == null) return prev;
+        ListNode next = curr.next;
+        curr.next = prev;
 
-		head.next.next = head;
-
-		/* to deal with the corner case of the left move node. */
-		head.next = null;
-
-		return reversedHead;
-	
-	
-	}
-
-
+        return reverseList(next, curr);
+    }
+}
 
