@@ -16,43 +16,42 @@
  * 3. recover the next pointer of the orginal.
  * Time complexity: O(n)
  * Space complexity: O(1)
- * Status: DNF.
+ * Status: Accepted.
  */
 public class Solution {
     public RandomListNode copyRandomList(RandomListNode head) {
- if (head == null) return null;
-        RandomListNode originalCurr = head;
-        RandomListNode clonedCurr = new RandomListNode(originalCurr.label);
-        RandomListNode clonedHead = clonedCurr;
-        originalCurr.next = clonedCurr; 
-        while (originalCurr != null) {
-            RandomListNode next = originalCurr.next;
-            clonedCurr.next = next;
-            originalCurr = next;
-            if (originalCurr != null) {
-                clonedCurr = new RandomListNode(originalCurr.label); 
-                originalCurr.next = clonedCurr;
-            }
+        if (head == null) return null;
+        RandomListNode dummyHead = new RandomListNode(-1);
+        dummyHead.next = head;
+        
+        // Round one, copy the node
+        RandomListNode curr = head;
+        while (curr != null) {
+            RandomListNode next = curr.next;
+            RandomListNode copy = new RandomListNode(curr.label);
+            curr.next = copy;
+            copy.next = next;
+            curr = next;
         }
-
-        clonedCurr = clonedHead;
-        originalCurr = head;
-
-        while (originalCurr != null) {
-            originalCurr.next.random = originalCurr.random.next;
-            RandomListNode next = originalCurr.next.next;
-            if (next != null) {
-                originalCurr.next.next = next.next;
-                originalCurr.next = next;
-            } else {
-                originalCurr.next.next = null;
-                originalCurr.next = null;
+        
+        // round two, set the random pointer
+        curr = head;
+        while (curr != null) {
+            if (curr.random != null) {
+                curr.next.random = curr.random.next;
             }
-            originalCurr = originalCurr.next;
+            curr = curr.next.next;
         }
-
-        return clonedHead; 
+        
+        // recover
+        curr = head;
+        RandomListNode copyHead = head.next;
+        while (curr != null && curr.next != null) {
+            RandomListNode next = curr.next;
+            curr.next = curr.next.next;
+            curr = next;
+        }
+        
+        return copyHead;
     }
-            
-
-}
+} 
