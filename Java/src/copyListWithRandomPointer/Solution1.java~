@@ -20,6 +20,7 @@
  */
 public class Solution {
     public RandomListNode copyRandomList(RandomListNode head) {
+ if (head == null) return null;
         RandomListNode originalCurr = head;
         RandomListNode clonedCurr = new RandomListNode(originalCurr.label);
         RandomListNode clonedHead = clonedCurr;
@@ -28,8 +29,10 @@ public class Solution {
             RandomListNode next = originalCurr.next;
             clonedCurr.next = next;
             originalCurr = next;
-            clonedCurr = new RandomListNode(originalCurr.label); 
-            originalCurr.next = clonedCurr;
+            if (originalCurr != null) {
+                clonedCurr = new RandomListNode(originalCurr.label); 
+                originalCurr.next = clonedCurr;
+            }
         }
 
         clonedCurr = clonedHead;
@@ -38,8 +41,14 @@ public class Solution {
         while (originalCurr != null) {
             originalCurr.next.random = originalCurr.random.next;
             RandomListNode next = originalCurr.next.next;
-            originalCurr.next.next = next.next;
-            originalCurr = next;
+            if (next != null) {
+                originalCurr.next.next = next.next;
+                originalCurr.next = next;
+            } else {
+                originalCurr.next.next = null;
+                originalCurr.next = null;
+            }
+            originalCurr = originalCurr.next;
         }
 
         return clonedHead; 

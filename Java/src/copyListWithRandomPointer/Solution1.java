@@ -18,41 +18,50 @@
  * Space complexity: O(1)
  * Status: DNF.
  */
+
+/**
+ * Definition for singly-linked list with a random pointer.
+ * class RandomListNode {
+ *     int label;
+ *     RandomListNode next, random;
+ *     RandomListNode(int x) { this.label = x; }
+ * };
+ */
 public class Solution {
     public RandomListNode copyRandomList(RandomListNode head) {
- if (head == null) return null;
-        RandomListNode originalCurr = head;
-        RandomListNode clonedCurr = new RandomListNode(originalCurr.label);
-        RandomListNode clonedHead = clonedCurr;
-        originalCurr.next = clonedCurr; 
-        while (originalCurr != null) {
-            RandomListNode next = originalCurr.next;
-            clonedCurr.next = next;
-            originalCurr = next;
-            if (originalCurr != null) {
-                clonedCurr = new RandomListNode(originalCurr.label); 
-                originalCurr.next = clonedCurr;
-            }
+        RandomListNode dummyHead = new RandomListNode(-1);
+        dummyHead.next = head;
+        // Round 1: copy the node
+        while (head != null) {
+            RandomListNode copy = new RandomListNode(head.label);
+            copy.next = head.next;
+            head.next = copy;
+            head = copy.next;
         }
-
-        clonedCurr = clonedHead;
-        originalCurr = head;
-
-        while (originalCurr != null) {
-            originalCurr.next.random = originalCurr.random.next;
-            RandomListNode next = originalCurr.next.next;
-            if (next != null) {
-                originalCurr.next.next = next.next;
-                originalCurr.next = next;
-            } else {
-                originalCurr.next.next = null;
-                originalCurr.next = null;
+        
+        // Round 2: copy the random link
+        head = dummyHead.next;
+        while (head != null) {
+            RandomListNode copy = head.next;
+            if (head.random != null) {
+                copy.random = head.random.next;
             }
-            originalCurr = originalCurr.next;
-        }
-
-        return clonedHead; 
-    }
             
-
+            head = copy.next;
+        }
+        
+        // Round 3: restore the next pointer
+        head = dummyHead.next;
+        RandomListNode copyHead = new RandomListNode(-1);
+        RandomListNode copyIter = copyHead;
+        while (head != null) {
+            RandomListNode copy = head.next;
+            copyIter.next = copy;
+            head.next = copy.next;
+            head = head.next;
+            copyIter = copy;
+        }
+        
+        return copyHead.next;
+    }
 }
