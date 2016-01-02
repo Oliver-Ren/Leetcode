@@ -14,35 +14,32 @@ public class SolutionSwapDFS {
         // precondition: nums is not null
         List<List<Integer>> result = new ArrayList<List<Integer>>();
         if (nums == null || nums.length == 0) return result;
+        List<Integer> path = new ArrayList<Integer>();
         Arrays.sort(nums);
-        dfs(nums, result, 0);
+        for (int num : nums) {
+            path.add(num);
+        }
+        dfs(path, result, 0);
         return result;
     }
 
-    private void dfs(int[] nums, List<List<Integer>> result, int pos) {
-        if (pos == nums.length) {
-            List<Integer> cand = new ArrayList<Integer>();
-            for (int i : nums) {
-                cand.add(i);
-            }
-            result.add(cand);
+    private void dfs(List<Integer> path, List<List<Integer>> result, int pos) {
+        if (pos == path.size()) {
+            result.add(path);
             return;
         }
 
-        for (int i = pos; i < nums.length; i++) {
-            if (i != pos && nums[i] == nums[i - 1]) continue;
-            printinfo(nums, pos, i);
-            exch(nums, i, pos);
-            dfs(nums, result, pos + 1);
-            exch(nums, i, pos);
-            printinfo(nums, pos, i);
+        for (int i = pos; i < path.size(); i++) {
+            if (i != pos && path.get(i).equals(path.get(pos))) continue;
+            exch(path, i, pos);
+            dfs(new ArrayList<Integer>(path), result, pos + 1);
         }
     }
 
-    private void exch(int[] nums, int i, int j) {
-        int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
+    private void exch(List<Integer> path, int i, int j) {
+        int temp = path.get(i);
+        path.set(i, path.get(j));
+        path.set(j, temp);
     }
 
     private void printinfo(int[] nums, int pos, int i) {
