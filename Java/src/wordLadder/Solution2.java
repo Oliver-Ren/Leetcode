@@ -13,7 +13,7 @@ import java.lang.StringBuilder;
  * assume the length of the word is n.
  * Time complexity: O(26^n)
  * Space complexity: O(26^n) in the worst case.
- * Status: Time Limit Exceeded.
+ * Status: Accepted, 94ms.
  */
 
 public class Solution2 {
@@ -23,7 +23,6 @@ public class Solution2 {
             throw new NullPointerException();
         }
 
-        wordList.add(endWord);
         // the searching candidate for BFS.
         Queue<String> cands = new LinkedList<String>();
         // The number of levels (transformations)
@@ -36,11 +35,11 @@ public class Solution2 {
             level++;
             for (int i = 0; i < size; i++) {
                 String currWord = cands.poll();
-                wordList.remove(currWord);
                 char[] temp = currWord.toCharArray();
                 for (char k = 'a'; k <= 'z'; k++) {
                     for (int j = 0; j < currWord.length(); j++) {
                         char original = temp[j];
+                        if (original == k) continue;
                         temp[j] = k;
                         String cand = String.copyValueOf(temp); 
                         temp[j] = original;
@@ -49,6 +48,7 @@ public class Solution2 {
                                 return level + 1;
                             }
                             cands.offer(cand);
+                            wordList.remove(cand);
                         }
                     }
                 }

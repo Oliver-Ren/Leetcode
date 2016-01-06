@@ -33,7 +33,7 @@ public class Solution {
         // the flag for find and termiante.
         boolean isFound = false;
         
-
+        visited.add(beginWord);
         cands.offer(beginWord);
         while (!cands.isEmpty() && !isFound) {
             int size = cands.size();
