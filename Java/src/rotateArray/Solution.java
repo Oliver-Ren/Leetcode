@@ -70,6 +70,7 @@ public class Solution {
         if (k < 0) throw new IllegalArgumentException();
         int n = nums.length; 
         k %= n;
+        if (k == 0) return;
         int i = n - k;
         int p = n - k;
         int j = k;
@@ -99,6 +100,36 @@ public class Solution {
             nums[left + i] = nums[right + i];
             nums[right + i] = temp;
         }
+    }
+
+    /**
+     * Another Juggling Algorithm implementation.
+     */
+    public void rotate4(int[] nums, int k) {
+        // precondition: nums is not null
+        if (nums == null) throw new NullPointerException();
+        // precondition; 0 <= k < n;
+        int n = nums.length;
+        k %= n;
+        if (k == 0) return;
+        int start = 0;
+        
+        for (int i = 0; i < gcd(n,k); i++) {
+            int prev = nums[start];
+            int curr = (start + k) % n;
+            int steps = n / gcd(n, k);
+            for (int j = 0; j < steps; j++) {
+                int temp = nums[curr];
+                nums[curr] = prev;
+                prev = temp;
+                curr = (curr + k) % n;
+            }
+            start++;
+        }
+    }
+    
+    private int gcd(int n, int k) {
+        return k == 0 ? n : gcd(k, n % k);
     }
 
     /**
