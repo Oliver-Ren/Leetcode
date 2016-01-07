@@ -1,35 +1,16 @@
-/** DP solution.
-  * time compleixty: O(m * n)
-  * space complexity: O(m * n);
-  * Status: Accepted, 244ms.
-  */
+package UniquePaths;
 
 public class Solution {
-    public int uniquePaths(int m, int n) {
-        int[][] dp = new int[m + 1][n + 1];
-        
-        for (int i = 0; i <= m; i++) {
-            dp[i][0] = 0;
-        }
+	// This is the DFS algorithm with the cache;
+	//time: O(n^2) space: O(n^2);
+	public static int[][] cache = new int[100][100];
+	public int uniquePaths(int m, int n) {
+	    if (m < 1 || n < 1) return 0;
+	    if (m == 1 || n == 1) return 1;
+	    if (cache[m-1][n-1] != 0 ) return cache[m-1][n-1];
+	    else
+	    return cache[m-1][n-1] = uniquePaths(m-1,n) + uniquePaths(m, n-1);
+	    
+	}
 
-        for (int j = 0; j <= n; j++) {
-            dp[0][j] = 0;
-        }
-
-        dp[0][1] = 1;
-
-        for (int i = 1; i <= m; i++) {
-            for (int j = 1; j <= n; j++) {
-                dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
-            }
-        }
-
-        return dp[m][n];
-    }
-
-    public static void main(String[] args) {
-        Solution test = new Solution();
-        System.out.println(test.uniquePaths(3,3));
-    }
 }
-

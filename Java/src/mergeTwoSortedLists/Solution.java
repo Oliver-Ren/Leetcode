@@ -1,50 +1,47 @@
+package MergeTwoSortedLists;
 /**
  * Definition for singly-linked list.
  * public class ListNode {
  *     int val;
  *     ListNode next;
- *     ListNode(int x) { val = x; }
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
  * }
  */
 
-/*
- * The iterative solution.
- * Time complexity: O(min(m,n))
- * space complexity: O(1)
- * status: Accepted, 316ms.
- */
 
+/*
 public class Solution {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        ListNode dummy = new ListNode(-1);
-        ListNode visitor = dummy;
-        
-        dummy.next = l1;
-
-        while (l1 != null || l2 != null) {
-            // condition when l1 is null
-            if (l1 == null) {
-                visitor.next = l2;
-                break;
-            }
-
-            if (l2 == null) {
-                visitor.next = l1;
-                break;
-            }
-
-            if (l1.val < l2.val) {
-                visitor.next = l1;
+        ListNode dummyHead =  new ListNode(0);
+        mergeLists(l1,l2,dummyHead);
+        return dummyHead.next;
+    }
+    
+    public void mergeLists(ListNode l1, ListNode l2, ListNode current){
+        if ( (l1 == null && l2 == null) || current == null) return;
+        else if ( l1 == null && l2 != null){
+            current.next = l2;
+            return;
+        }
+        else if ( l1 != null && l2 == null){
+            current.next = l1;
+            return;
+        }
+        else if ( l1 != null && l2 != null){
+            if (l1.val < l2.val){
+                current.next = l1;
                 l1 = l1.next;
-            } else {
-                visitor.next = l2;
+            }
+            else{
+                current.next = l2;
                 l2 = l2.next;
             }
-
-            visitor = visitor.next;
         }
-
-        return dummy.next;
-        
+       
+        mergeLists(l1,l2,current.next);
     }
 }
+*/
