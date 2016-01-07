@@ -1,0 +1,44 @@
+/**
+ * Dynamic Programming solution.
+ * This is an Unbounded Knapsack problem.
+ * Time complexity: O(N*V*sum(V/Ci)) where N is the 
+ * number of items in candidates, V is the target value,
+ * Ci is the value of each item in the candidates.
+ * Space complexity: O(N*V);
+ */
+public class Solution {
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        // precondition: candidates is not null
+        if (candidates == null) throw new NullPointerException();
+        
+        Arrays.sort(candidates);
+        int n = candidates.length;
+        List<List<List<Integer>>> results = new ArrayList<List<List<Integer>>>();
+        
+        // initialize
+        for (int i = 0; i <= target; i++) {
+            results.add(new ArrayList<List<Integer>>());
+        }
+        
+        results.get(0).add(new ArrayList<Integer>());
+        
+        for (int weight : candidates) {
+            for (int j = weight; j <= target; j++) {
+                if (results.get(j - weight).size() > 0) {
+                    //System.out.println("weight = " + weight + ", j = " + j);
+                    //List<List<Integer>> temp = new ArrayList<List<Integer>>(results.get(j - weight));
+                    //System.out.println("the result" + (j - weight) + " = " + temp);
+                    for (List<Integer> l : results.get(j - weight)) {
+                        List<Integer> copy = new ArrayList<Integer>(l);
+                        copy.add(weight);
+                        results.get(j).add(copy);
+                    }
+                    //System.out.println("After, the result" + (j) + " = " + results.get(j));
+                }
+            }
+        }
+        
+        return results.get(target);
+        
+    }
+}
