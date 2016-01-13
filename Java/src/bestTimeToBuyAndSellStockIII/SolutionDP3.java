@@ -1,8 +1,13 @@
 /**
  * The dynamic programming approach. 
- * calculate the max profit of the left and right
- * side of curr index for each indexes. and find the 
- * maximum.
+ * State: hold1(i) represents the maximum profit while holding stocks at i in
+ *        the first transaction. 
+ *        free1(i) represents the maximum profit while not holding stocks at i
+ *        int the first transaction.
+ *        hold2(i) represent the maximum profit . .... 2nd...
+ *        free2(i) ...... 2nd .....
+ * Recurrence: hold1(i) = max(hold1(i - 1), empty(i - 1) - price(i)).
+ *             
  * Time complexity: O(n)
  * Space complexity: O(n)
  * Status: Accepted, 7ms.
