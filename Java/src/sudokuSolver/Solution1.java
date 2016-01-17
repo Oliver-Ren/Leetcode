@@ -1,0 +1,105 @@
+/**
+ * The DFS backtracking solution, optimized using bit-map.
+ * 
+ * Time complexity: O(9 * n ^2); 
+ * Space complexity: O(n^2); for the stack space.
+ * Status: Accepted, 6ms.
+ */
+public class Solution1 {
+    public void solveSudoku(char[][] board) {
+        // precondition: board is not null
+        if (board == null) {
+            throw new NullPointerException();
+        }
+        
+        int[] rowCand = new int[9];
+        int[] colCand = new int[9];
+        int[] blockCand = new int[9];
+
+        // init the the availability vector
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (board[i][j] != '.') {
+                    int pos = 1 << (board[i][j] - '1'); 
+                    rowCand[i] |= pos;
+                    colCand[j] |= pos;
+                    blockCand[i/3*3 + j/3] |= pos;
+                }
+            }
+        }
+
+        dfs(board, rowCand, colCand, blockCand, 0, 0);
+
+    }
+
+    private boolean dfs(char[][] board, int[] rowCand, int[] colCand, int[] blockCand, int row, int col) {
+        if (row == 9) {
+            return true;
+        }
+
+        for (int j = col; j < 9; j++) {
+            if (board[row][j] != '.') {
+                continue;
+            }
+            
+
+            int cand 
+                    = (rowCand[row] | colCand[j] | blockCand[row/3*3 + j/3]);
+            int k = 1;
+            for (char val = '1'; val <= '9'; val++, k <<= 1) { 
+                if ((cand & k) == 0) {
+                    rowCand[row] ^= k;
+                    colCand[j] ^= k;
+                    blockCand[row/3*3 + j/3] ^= k;
+                    board[row][j] = val;
+                    if (dfs(board, rowCand, colCand, blockCand, row, j + 1)) {
+                    	return true;
+                    }
+	                board[row][j] = '.';
+	                rowCand[row] ^= k;
+	                colCand[j] ^= k;
+	                blockCand[row/3*3 + j/3] ^= k;
+                }
+            }
+            return false;
+           
+        }
+
+        return dfs(board, rowCand, colCand, blockCand, row + 1, 0);
+        
+    }
+
+    public static void main(String[] args) {
+        Solution1 s = new Solution1();
+        String[] sudokuString = {"..9748...",
+                       "7........",
+                       ".2.1.9...",
+                       "..7...24.",
+                       ".64.1.59.",
+                       ".98...3..",
+                       "...8.3.2.",
+                       "........6","...2759.."};
+        char[][] sudoku = new char[9][9]; 
+
+        for (int i = 0; i < 9; i++) {
+            sudoku[i] = sudokuString[i].toCharArray();
+        }
+        
+        printBoard(sudoku);
+        s.solveSudoku(sudoku);
+        printBoard(sudoku);
+
+    }
+
+    private static void printBoard(char[][] sudoku) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                System.out.print(" " + sudoku[i][j]);
+            }
+            System.out.println();
+        }
+    }
+
+
+}
+
