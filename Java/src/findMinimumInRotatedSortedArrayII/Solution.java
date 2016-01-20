@@ -1,3 +1,11 @@
+/** 
+ * This implementation makes it easier to write
+ * correct code.
+ *
+ * Time complexity: O(n) in the worst case.
+ * Space complexity: O(1);
+ * Status: Accepted.
+ */
 public class Solution {
 	public int findMin(int[] nums) {
 		// The condition when the array is null
