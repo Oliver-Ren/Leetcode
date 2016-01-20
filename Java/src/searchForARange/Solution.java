@@ -1,5 +1,5 @@
 /** This is a not so concise but easy to write solution 
-  * for the problem, it adapts the template of the 9 chpate
+  * for the problem, it adapts the template of the 9 chpater
   * binary search.
   * The time complexity is O(lgn), and the space complexity
   * is O(1).
